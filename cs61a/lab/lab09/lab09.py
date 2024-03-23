@@ -41,11 +41,11 @@ def every_other(s):
     Link(4)
     """
     "*** YOUR CODE HERE ***"
-    if s is Link.empty or s.rest is Link.empty:
-        return 
+    if s == Link.empty:
+        return s 
     else:
         s.rest = s.rest.rest
-    return every_other(s.rest)
+        return every_other(s.rest)
 
 
 
@@ -60,10 +60,8 @@ def label_squarer(t):
     """
     "*** YOUR CODE HERE ***"
     t.label = t.label ** 2
-    if t.is_leaf():
-        return 
     for b in t.branches:
-        label_squarer(b)
+        return label_squarer(b)
 
 def cumulative_mul(t):
     """Mutates t so that each node's label becomes the product of all labels in
@@ -75,9 +73,14 @@ def cumulative_mul(t):
     Tree(105, [Tree(15, [Tree(5)]), Tree(7)])
     """
     "*** YOUR CODE HERE ***"
+    if t.is_leaf():
+        return t 
     for b in t.branches:
-        cumulative_mul(b)
-        t.label *= b.label
+        return cumulative_mul(b)
+    cumu_mul = t.label
+    for b in t.branches:
+        coum_mul = cumu_mul * b.label
+    t.label = coum_mul
 
 def has_cycle(link):
     """Return whether link contains a cycle.
@@ -94,7 +97,17 @@ def has_cycle(link):
     False
     """
     "*** YOUR CODE HERE ***"
-
+    p = link
+    comp = set()
+    while p:
+        if p in comp:
+            return True
+        else:
+            comp.add(p)
+            p = p.rest
+    return False
+    
+    
 
 def has_cycle_constant(link):
     """Return whether link contains a cycle.
@@ -106,9 +119,21 @@ def has_cycle_constant(link):
     >>> t = Link(1, Link(2, Link(3)))
     >>> has_cycle_constant(t)
     False
+    >>> t = Link(1, Link(2, Link(3, Link(5))))
+    >>> t.rest.rest.rest.rest = t
+    >>> has_cycle_constant(t)
+    True
     """
     "*** YOUR CODE HERE ***"
+    
+    before_link, after_link = link, link
+    while after_link != Link.empty:
+        if after_link.rest == before_link:
+            return True
+        after_link = after_link.rest
 
+    return False
+    
 
 def reverse_other(t):
     """Mutates the tree such that nodes on every other (odd-depth) level
@@ -124,7 +149,15 @@ def reverse_other(t):
     Tree(1, [Tree(8, [Tree(3, [Tree(5), Tree(4)]), Tree(6, [Tree(7)])]), Tree(2)])
     """
     "*** YOUR CODE HERE ***"
-
+    if t.is_leaf():
+        return
+    label_list = []
+    for b in t.branches:
+        label_list.append(b.label)
+    for b, new_label in zip(t.branches, reversed(label_list)):
+        b.label = new_label
+        for bb in b.branches:
+            reverse_other(bb)
 
 class Link:
     """A linked list.

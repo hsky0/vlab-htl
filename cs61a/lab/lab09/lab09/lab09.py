@@ -114,7 +114,15 @@ def has_cycle_constant(link):
     False
     """
     "*** YOUR CODE HERE ***"
-
+    p = link
+    visit_set = set()
+    while p != Link.empty:
+        if p in visit_set:
+            return True
+        else:
+            visit_set.add(p)
+        p = p.rest
+    return False
 
 def reverse_other(t):
     """Mutates the tree such that nodes on every other (odd-depth) level

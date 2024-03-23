@@ -222,6 +222,12 @@ Q2: Generators
 I think this question is very difficuilt, mabey I don't understand the Topic : **Generator**\
 
 
+## Lab09
+Q5: Commulative Mul
+
+Q7: Reverse Other
+
+
 
 
 ## Lab10
