@@ -170,7 +170,41 @@ def is_bst(t):
     False
     """
     "*** YOUR CODE HERE ***"
+    def bst_min(t):
+        if t.is_leaf():
+            return t.label
+        else:
+            return min(t.label, min(bst_min(b) for b in t.branches))
+    def bst_max(t):
+        if t.is_leaf():
+            return t.label
+        else:
+            return max(t.label, max(bst_max(b) for b in t.branches))
     
+    # if t.is_leaf():
+    #     return True
+    # if len(t.branches) == 1:
+    #     if t.label > t.branches[0].label:
+    #         return is_bst(t.branches[0]) and t.label >= bst_max(t.branches[0])
+    #     else:
+    #         return is_bst(t.branches[0]) and t.label < bst_min(t.branches[0])
+    # elif len(t.branches) == 2:
+    #     le, ri = t.branches
+    #     return is_bst(le) and is_bst(ri) and (bst_max(le) <= t.label < bst_min(ri))
+    # else:
+    #     return False
+    def helper(t):
+        if t.is_leaf():
+            return True
+        if len(t.branches) == 1:
+            return helper(t.branches[0])
+        if len(t.branches) == 2:
+            if bst_max(t.branches[0]) <= t.label and bst_min(t.branches[1]) > t.label:
+                return helper(t.branches[0]) and helper(t.branches[1])
+            return False
+        else:
+            return False
+    return helper(t)
 
 def store_digits(n):
     """Stores the digits of a positive number n in a linked list.
@@ -188,7 +222,36 @@ def store_digits(n):
     >>> print("Do not use str or reversed!") if any([r in cleaned for r in ["str", "reversed"]]) else None
     """
     "*** YOUR CODE HERE ***"
+    # link = Link.empty
+    # def helper(n):
+    #     nonlocal link
+    #     if n == 0:
+    #         return link
+    #     else:
+    #         temp_link = link
+    #         link = Link(n % 10)
+    #         link.rest = temp_link
+    #         return helper(n // 10)
 
+    # return helper(n) 
+    
+    # def helper(lst, n):
+    #     if n == 0:
+    #         return lst 
+    #     else:
+    #         lst = Link(n % 10, lst)
+    #         return helper(lst, n // 10)
+    # ans = Link(n % 10, Link.empty)
+    # return helper(ans, n // 10)
+
+    # if n < 10:
+    #     return Link(n, Link.empty)
+    # t = 0
+    # while (10 ** t) < n:
+    #     t += 1
+    # if 10 ** t > n:
+    #     t -= 1
+    # return Link(n // (10 ** t), store_digits(n % (10 ** t)))
 
 def path_yielder(t, value):
     """Yields all possible paths from the root of t to a node with the label value
@@ -226,10 +289,11 @@ def path_yielder(t, value):
     """
 
     "*** YOUR CODE HERE ***"
-
-    for _______________ in _________________:
-        for _______________ in _________________:
-
+    if t.label == value:
+        yield [value]
+    for b in t.branches:
+        for path in path_yielder(b, value):
+            yield [t.label] + path
             "*** YOUR CODE HERE ***"
 
 
@@ -251,6 +315,13 @@ def remove_all(link , value):
     <0 1>
     """
     "*** YOUR CODE HERE ***"
+    if link.rest == Link.empty:
+        return
+    if link.rest.first == value:
+        link.rest = link.rest.rest
+        return remove_all(link, value)
+    else:
+        return remove_all(link.rest, value)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 
 
 def deep_map(f, link):
@@ -267,6 +338,14 @@ def deep_map(f, link):
     <<2 <4 6> 8> <<10>>>
     """
     "*** YOUR CODE HERE ***"
+    if link == Link.empty:
+        return link
+    if isinstance(link.first, Link):
+        first = deep_map(f, link.first)
+    else:
+        fisrt = f(link.first)
+    return Link(first, deep_map(f, link.rest))
+        
 
 
 class Tree:
