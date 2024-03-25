@@ -1,5 +1,8 @@
 # UCB CS61A: Structure and Interpretation of Computer Programs
-## Lab01
+
+## Chapter 1: Building Abstractions with Functions
+
+### Lab01
 布尔运算符的优先级：
 - not is highest priority
 - and 
@@ -16,7 +19,7 @@ python环境中的快捷键：
 - **TypeError**	Attempted operation on incompatible types (e.g. trying to add a function and a number) or called function with the wrong number of arguments  
 - **ZeroDivisionError**	Attempted division by zero
 
-## Project 1: Hog
+### Project 1: Hog
 规则：
 - **Pig Out**：
   如果有一个骰子输出为1，则得分为1
@@ -30,3 +33,21 @@ python环境中的快捷键：
 - **Swine Swap**：
   在当前玩家的得分加上该回合的得分后，如果当前玩家得分的个位数与对手得分的个位数之差的绝对值等于对手得分的十位值，则应该交换分数。交换可能发生在一个回合结束时，其中一名玩家达到目标分数，导致对手获胜。
 
+
+
+
+## Chapter 2: Building Abstractions with Data
+- method: Bound methods are also objects: a function that has its first parameter "self" already bound to an instance.
+- Inheritance is a method for relating classes together
+
+
+### Object-Oriented Dsign
+- Desinging for Inheritance
+  - Don't repeat yourself; use exising implementations.
+  - Attributes that have been overridden are still accessible cia calss objects.
+  - Look up attributes on instances whenever possible
+- Inheritance and Composition
+  - Inheritance is best for representing **is-a** relationships.
+  - Composition is best for representing **has-a** relationships.
+
+### Attribute Lookup Practice

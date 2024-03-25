@@ -50,41 +50,7 @@ class VendingMachine:
     'Here is your soda.'
     """
     "*** YOUR CODE HERE ***"
-    
 
-    def __init__(self, product, price):
-        self.product = product
-        self.price = price
-        self.number = 0
-        self.balance = 0
-    
-    def restock(self, num):
-        self.number += num
-        return 'Current {0} stock: {1}'.format(self.product, self.number)
-
-    def vend(self):
-        if self.number == 0:
-            return 'Inventory empty. Restocking required.'
-        else:
-            remainder = self.balance - self.price
-            if remainder < 0:
-                return 'You must add ${0} more funds.'.format(-remainder)
-            elif remainder == 0:
-                self.balance = 0
-                self.number -= 1
-                return 'Here is your {0}.'.format(self.product)
-            else:
-                self.balance = 0
-                self.number -= 1
-                return 'Here is your {0} and ${1} change.'.format(self.product, remainder)
-        
-    def add_funds(self, fund):
-        self.balance += fund
-        if self.number == 0:
-            temp, self.balance = self.balance, 0
-            return 'Inventory empty. Restocking required. Here is your ${0}.'.format(temp)
-        else:
-            return 'Current balance: ${0}'.format(self.balance)
 
 class Mint:
     """A mint creates coins by stamping on years.
@@ -135,7 +101,7 @@ class Coin:
     def worth(self):
         "*** YOUR CODE HERE ***"
         time = Mint.current_year - self.year
-        return self.cents + (0 if time < 50 else time - 50)
+        return self.cents + (0 if time - 50 < 0 else time - 50)
 
 class Nickel(Coin):
     cents = 5
@@ -180,26 +146,46 @@ def is_bst(t):
             return t.label
         else:
             return max(t.label, max(bst_max(b) for b in t.branches))
-    
-    # if t.is_leaf():
-    #     return True
-    # if len(t.branches) == 1:
-    #     if t.label >= t.branches[0].label:
-    #         return is_bst(t.branches[0]) and t.label >= bst_max(t.branches[0])
-    #     else:
-    #         return is_bst(t.branches[0]) and t.label < bst_min(t.branches[0])
-    # elif len(t.branches) == 2:
-    #     le, ri = t.branches
-    #     return is_bst(le) and is_bst(ri) and (bst_max(le) <= t.label < bst_min(ri))
-    # else:
-    #     return False
+    """method 1
+    if t.is_leaf():
+        return True
+    if len(t.branches) == 1:
+        if t.label >= t.branches[0].label:
+            return is_bst(t.branches[0]) and t.label >= bst_max(t.branches[0])
+        else:
+            return is_bst(t.branches[0]) and t.label < bst_min(t.branches[0])
+    elif len(t.branches) == 2:
+        if t.label < t.branches[0].label or t.label < bst_max(t.branches[0]) or t.label > bst_min(t.branches[1]) or t.label >= t.branches[1].label:
+            return False
+        else:
+            return is_bst(t.branches[0]) and is_bst(t.branches[1])
+    else:
+        return False
+    """
+
+    """method 2
+    if t.is_leaf():
+        return True
+    if len(t.branches) == 1:
+        if t.label >= t.branches[0].label:
+            return is_bst(t.branches[0]) and t.label >= bst_max(t.branches[0])
+        else:
+            return is_bst(t.branches[0]) and t.label < bst_min(t.branches[0])
+    elif len(t.branches) == 2:
+        lf, ri = t.branches[0], t.branches[1]
+        return is_bst(lf) and is_bst(ri) and (bst_max(lf) <= t.label < bst_min(ri))
+    else:
+        return False
+    """
+
+    """method 3"""
     def helper(t):
         if t.is_leaf():
             return True
         if len(t.branches) == 1:
             return helper(t.branches[0])
-        if len(t.branches) == 2:
-            if bst_max(t.branches[0]) <= t.label and bst_min(t.branches[1]) > t.label:
+        elif len(t.branches) == 2:
+            if t.label >= bst_max(t.branches[0]) and t.label < bst_min(t.branches[1]):
                 return helper(t.branches[0]) and helper(t.branches[1])
             return False
         else:
@@ -222,36 +208,15 @@ def store_digits(n):
     >>> print("Do not use str or reversed!") if any([r in cleaned for r in ["str", "reversed"]]) else None
     """
     "*** YOUR CODE HERE ***"
-    # link = Link.empty
-    # def helper(n):
-    #     nonlocal link
-    #     if n == 0:
-    #         return link
-    #     else:
-    #         temp_link = link
-    #         link = Link(n % 10)
-    #         link.rest = temp_link
-    #         return helper(n // 10)
-
-    # return helper(n) 
-    
-    # def helper(lst, n):
-    #     if n == 0:
-    #         return lst 
-    #     else:
-    #         lst = Link(n % 10, lst)
-    #         return helper(lst, n // 10)
-    # ans = Link(n % 10, Link.empty)
-    # return helper(ans, n // 10)
-
-    # if n < 10:
-    #     return Link(n, Link.empty)
-    # t = 0
-    # while (10 ** t) < n:
-    #     t += 1
-    # if 10 ** t > n:
-    #     t -= 1
-    # return Link(n // (10 ** t), store_digits(n % (10 ** t)))
+    link = Link.empty
+    def helper(n):
+        nonlocal link 
+        if n == 0:
+            return link
+        else:
+            link = Link(n % 10, link)
+            return helper(n // 10)
+    return helper(n)
 
 def path_yielder(t, value):
     """Yields all possible paths from the root of t to a node with the label value
@@ -315,15 +280,15 @@ def remove_all(link , value):
     <0 1>
     """
     "*** YOUR CODE HERE ***"
-    if link.rest == Link.empty:
+
+    if link.rest is Link.empty:
         return
     if link.rest.first == value:
         link.rest = link.rest.rest
         return remove_all(link, value)
     else:
-        return remove_all(link.rest, value)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-
-
+        return remove_all(link.rest, value)
+    
 def deep_map(f, link):
     """Return a Link with the same structure as link but with fn mapped over
     its elements. If an element is an instance of a linked list, recursively
@@ -338,14 +303,13 @@ def deep_map(f, link):
     <<2 <4 6> 8> <<10>>>
     """
     "*** YOUR CODE HERE ***"
-    if link == Link.empty:
+    if link is Link.empty:
         return link
     if isinstance(link.first, Link):
         first = deep_map(f, link.first)
     else:
-        fisrt = f(link.first)
+        first = f(link.first)
     return Link(first, deep_map(f, link.rest))
-        
 
 
 class Tree:
