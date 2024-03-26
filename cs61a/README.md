@@ -51,3 +51,13 @@ python环境中的快捷键：
   - Composition is best for representing **has-a** relationships.
 
 ### Attribute Lookup Practice
+
+
+### String Representations
+- The **str** is legible to the **humans**
+- The **repr** is legible to the  **Python  interpreter**
+
+
+ 
+
+
