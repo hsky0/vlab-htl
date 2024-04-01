@@ -9,8 +9,9 @@ public class Validator {
         int V = 1000;   //随机产生的数：0~V
 
         // 测试次数
-        int testTimes = 10;
+        int testTimes = 100000;
         System.out.println("测试开始...");
+        long startTime = System.currentTimeMillis();
         for(int i = 0; i < testTimes; i++){
 
             // 随机得到一个长度，值在0~N之间
@@ -22,7 +23,10 @@ public class Validator {
             int[] arr2 = copyArray(arr);
             int[] arr3 = copyArray(arr);
             // 进行排序
-            
+            //selectionSort(arr1);
+            // bubbleSort(arr2);
+            // printArray(arr);
+            // printArray(arr2);
             // 测试
             if(!sameArray(arr1, arr2) || !sameArray(arr1, arr3)){
 
@@ -31,6 +35,8 @@ public class Validator {
             }
             
         }
+        long stopTime = System.currentTimeMillis();
+        System.out.println("timeUse = " + (stopTime - startTime) / 1000.0 + "s");
         System.out.println("测试结束");
 
     }
@@ -79,6 +85,62 @@ public class Validator {
         arr[j] = temp; 
     }
 
+    // 打印数组
+    public static void printArray(int[] arr) {
+
+        for(int e : arr){
+            System.err.print(e);
+            System.err.print(" ");
+        }
+        System.out.println();
+    }
+
     // 选择排序
-    
+    public static void selectionSort(int[] arr){
+
+        if(arr == null || arr.length < 2){
+            return;
+        }
+        for(int minIndex, i = 0; i < arr.length - 1; i++){
+            minIndex = i;
+            for(int j = i + 1; j < arr.length; j++){
+                
+                if(arr[minIndex] > arr[j]){
+                    minIndex = j;
+                }
+            }
+            swap(arr, i, minIndex);
+        }
+    }
+
+    // 冒泡排序
+    public static void bubbleSort(int[] arr) {
+        
+        int n = arr.length;
+        if(arr == null || arr.length < 2){
+            return;
+        }
+        while (n != 0) {
+            for(int i = 0; i < n - 1; i++){
+                if(arr[i] > arr[i + 1]){
+                    swap(arr, i, i + 1);
+                }
+            }
+            n -= 1;
+        }
+    }
+
+    // 插入排序
+    public static void insertionSort(int[] arr){
+
+        int n = arr.length;
+        if(arr == null || arr.length < 2){
+            return;
+        }
+        for(int i = 1; i < n; i++){
+            for(int j = i; j > 0 && arr[j] > arr[j - 1]; j--){
+                swap(arr, j, j - 1);
+            }
+        }
+    }
 }
