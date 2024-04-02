@@ -1,4 +1,6 @@
 package class02;
+import java.util.Arrays;
+import class02.MergeSort;
 
 public class Validator {
     
@@ -22,13 +24,25 @@ public class Validator {
             int[] arr1 = copyArray(arr);
             int[] arr2 = copyArray(arr);
             int[] arr3 = copyArray(arr);
+            int[] arr4 = copyArray(arr);
+            int[] cmparr = copyArray(arr);;
             // 进行排序
-            //selectionSort(arr1);
-            // bubbleSort(arr2);
+            selectionSort(arr1);
+            bubbleSort(arr2);
+            insertionSort(arr3);
+            MergeSort.mergeSort(arr4);
+            Arrays.sort(cmparr);
             // printArray(arr);
+            // printArray(arr1);
             // printArray(arr2);
+            // printArray(arr3);
             // 测试
-            if(!sameArray(arr1, arr2) || !sameArray(arr1, arr3)){
+            // if(!sameArray(arr1, arr2) || !sameArray(arr1, arr3) || !sameArray(arr1, arr4)){
+
+            //     // 算法出现错误
+            //     System.out.println("出现错误！请检查你的算法！");
+            // }
+            if(!sameArray(arr4, cmparr)){
 
                 // 算法出现错误
                 System.out.println("出现错误！请检查你的算法！");
@@ -138,9 +152,10 @@ public class Validator {
             return;
         }
         for(int i = 1; i < n; i++){
-            for(int j = i; j > 0 && arr[j] > arr[j - 1]; j--){
+            for(int j = i; j > 0 && arr[j] < arr[j - 1]; j--){
                 swap(arr, j, j - 1);
             }
         }
     }
+
 }

@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "MergeSort",
+      "request": "launch",
+      "mainClass": "class02.MergeSort",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
       "name": "includeTest",
       "request": "launch",
       "mainClass": "class02.includeTest",

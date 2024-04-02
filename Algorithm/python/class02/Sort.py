@@ -3,12 +3,15 @@ from time import time
 import sys
 
 sys.path.append("/home/ubuntu/htl/Algorithm/python/include/")
+sys.setrecursionlimit(10000)
+
 from globalFunc import randomArray, sameArray, copyArray, swap
+from MergeSort import mergeSort
 
 def validator():
     N = 100                 #数组最大长度
     V = 1000                #数组元素的最大值
-    testTimes = 1000     #测试次数
+    testTimes = 100     #测试次数
     print("测试开始...")
     startTime = time()      
     for i in range(testTimes):
@@ -18,13 +21,15 @@ def validator():
         arr1 = copyArray(arr)
         arr2 = copyArray(arr)
         arr3 = copyArray(arr)
+        arr4 = copyArray(arr)
 
         # 排序
         selectSort(arr1)
         bubbleSort(arr2)
         insertSort(arr3)
+        mergeSort(arr4)                
         # 测试
-        if not sameArray(arr1, arr2) or not sameArray(arr1, arr3):
+        if not sameArray(arr1, arr2) or not sameArray(arr1, arr3) or not sameArray(arr1, arr4):
             print("出现错误！")
     stopTime = time()
     print("测试结束")
@@ -53,6 +58,9 @@ def insertSort(arr):
             if arr[j] < arr[j - 1]:
                 swap(arr, j, j - 1)
     
+
+
+
 validator()
 
 

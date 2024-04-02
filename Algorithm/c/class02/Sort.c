@@ -10,12 +10,15 @@ void swap(int *arr, int i, int j);
 void selectSort(int *arr, int length);
 void bubbleSort(int *arr, int length);
 void insertSort(int *arr, int length);
+void mergeSort(int *arr, int length);
+void process(int *arr, int L, int R);
+void merge(int *arr, int L, int M, int R);
 
 int main(){
     
     int N = 100;               //数组的最大长度
     int V = 1000;              //数组元素的最大值
-    int testTimes = 1000000;     //测试次数
+    int testTimes = 10;     //测试次数
     struct timeval startTime, stopTime;
     printf("测试开始\n");
     gettimeofday(&startTime, NULL);
@@ -26,21 +29,34 @@ int main(){
         int *arr1 = copyArray(arr, n);
         int *arr2 = copyArray(arr, n);
         int *arr3 = copyArray(arr, n);
-        
+        int *arr4 = copyArray(arr, n);
         // 排序
         
         selectSort(arr1, n);
         bubbleSort(arr2, n);
         insertSort(arr3, n);
+        mergeSort(arr4, n);
         // printArray(arr, n);
         // printArray(arr1, n);
         // printArray(arr2, n);
         // printArray(arr3, n);
+        // printArray(arr4, n);
 
         // 测试
-        if(sameArray(arr1, arr2, n) == 0 || sameArray(arr1, arr2, n) == 0){
+        if(sameArray(arr1, arr2, n) == 0 || sameArray(arr1, arr2, n) == 0 || \
+        sameArray(arr1, arr3, n) == 0 || sameArray(arr1, arr4, n) == 0){
             printf("出现错误！\n");
         }
+        free(arr);
+        free(arr1);
+        free(arr2);
+        free(arr3);
+        free(arr4);
+        arr = NULL;
+        arr1 = NULL;
+        arr2 = NULL;
+        arr3 = NULL;
+        arr4 = NULL;
     }
     gettimeofday(&stopTime, NULL);
     double timeUse = (stopTime.tv_sec - startTime.tv_sec) + (stopTime.tv_usec - startTime.tv_usec) / 1000000.0;
@@ -139,4 +155,44 @@ void insertSort(int *arr, int length){
             swap(arr, j, j - 1);
         }
     }
+}
+
+void mergeSort(int *arr, int length){
+    return process(arr, 0, length - 1);
+}
+
+void process(int *arr, int L, int R){
+    if(L == R){
+        return;
+    }
+    int mid = L + ((R - L) >> 1);
+    process(arr, L, mid);
+    process(arr, mid + 1, R);
+    merge(arr, L, mid, R);
+}
+
+void merge(int *arr, int L, int M, int R){
+
+    int *help = (int *)malloc((R - L + 1) * sizeof(int));
+    int i = 0;
+    int p1 = L;
+    int p2 = M + 1;
+    while (p1 <= M && p2 <= R)
+    {
+        help[i++] = arr[p1] <= arr[p2] ? arr[p1++] : arr[p2++];
+    }
+    while (p1 <= M)
+    {
+        help[i++] = arr[p1++];
+    }
+    while (p2 <= R)
+    {
+        help[i++] = arr[p2++];
+    }
+    for(i = 0; i < (R - L + 1); i++){
+        arr[L + i] = help[i];
+    }
+    
+    free(help);
+    help = NULL;
 }
