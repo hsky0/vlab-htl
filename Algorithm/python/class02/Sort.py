@@ -1,9 +1,14 @@
 import random
 from time import time
+import sys
+
+sys.path.append("/home/ubuntu/htl/Algorithm/python/include/")
+from globalFunc import randomArray, sameArray, copyArray, swap
+
 def validator():
     N = 100                 #数组最大长度
     V = 1000                #数组元素的最大值
-    testTimes = 10000     #测试次数
+    testTimes = 1000     #测试次数
     print("测试开始...")
     startTime = time()      
     for i in range(testTimes):
@@ -24,22 +29,6 @@ def validator():
     stopTime = time()
     print("测试结束")
     print("timeUse = {0}s".format(stopTime - startTime))
-
-def randomArray(n, V):
-    # 使用列表推导式
-    arr = [(int)(random.random() * V) + 1 for _ in range(n)]
-    return arr 
-
-
-def copyArray(arr):
-    ans = [arr[i] for i in range(len(arr))]
-    return ans
-
-def sameArray(arr1, arr2):
-    return True if arr1 == arr2 else False
-    
-def swap(arr, i, j):
-    arr[i], arr[j] = arr[j], arr[i]
 
 # 选择排序
 def selectSort(arr):
@@ -66,15 +55,4 @@ def insertSort(arr):
     
 validator()
 
-# a = randomArray(12, 8)
-# b = copyArray(a)
-# c = copyArray(a)
-# d = copyArray(a)
-# selectSort(b)
-# bubbleSort(c)
-# insertSort(d)
-# print(a)
-# print(b)
-# print(c)
-# print(d)
 

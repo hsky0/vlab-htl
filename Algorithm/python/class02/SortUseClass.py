@@ -1,16 +1,19 @@
 import random
+from time import time
+
 
 class Sort:
 
     N = 100                 #数组最大长度
     V = 1000                #数组元素的最大值
-    testTimes = 10000      #测试次数
+    testTimes = 1000      #测试次数
 
     def __init__(self):
         pass
 
     def validator(self):
         print("测试开始...")
+        startTime = time()
         for i in range(self.testTimes):
             n = (int)(random.random() * self.N)
 
@@ -26,8 +29,10 @@ class Sort:
             # 测试
             if not self.sameArray(arr1, arr2) or not self.sameArray(arr1, arr3):
                 print("出现错误！")
+        stoptime = time()
+        timeUse = stoptime - startTime
         print("测试结束")
-    
+        print(f"timeUse = {timeUse}")
     def randomArray(self, n, V):
         # 使用列表推导式
         arr = [(int)(random.random() * V) + 1 for _ in range(n)]

@@ -3,6 +3,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "includeTest",
+      "request": "launch",
+      "mainClass": "class02.includeTest",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "GetMax",
+      "request": "launch",
+      "mainClass": "class02.GetMax",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
       "name": "test2",
       "request": "launch",
       "mainClass": "class02.test2",

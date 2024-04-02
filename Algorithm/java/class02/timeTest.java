@@ -3,7 +3,7 @@ package class02;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class test2 {
+public class timeTest {
     
     // public static void main(String[] args) {
     //     SimpleDateFormat sdf = new SimpleDateFormat();// 格式化时间 
