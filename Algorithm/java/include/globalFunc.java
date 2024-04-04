@@ -11,10 +11,11 @@ public class globalFunc {
     }
 
     public static void printArray(int[] arr){
-        for(int i = 0; i < arr.length; i++){
-            System.out.print(arr[i] + " ");
+        System.out.print("[");
+        for(int i = 0; i < arr.length - 1; i++){
+            System.out.print(arr[i] + ", ");
         }
-        System.out.println();
+        System.out.print(arr[arr.length - 1] + "]\n");
     }
 
     

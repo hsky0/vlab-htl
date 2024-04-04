@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
+#include "GlobalFuncs.h"
 
 int *randomArray(int n, int V);
 void printArray(int arr[], int length);
@@ -13,18 +14,22 @@ void insertSort(int *arr, int length);
 void mergeSort(int *arr, int length);
 void process(int *arr, int L, int R);
 void merge(int *arr, int L, int M, int R);
+void validator(void (*func1)(int *, int), void (*func2)(int *, int), int N, int V, int testTimes, int fixLength);
 
 int main(){
     
     int N = 100;               //数组的最大长度
     int V = 1000;              //数组元素的最大值
-    int testTimes = 10;     //测试次数
+    int testTimes = 100000;     //测试次数
+    //validator(selectSort, bubbleSort, N, V, testTimes);
     struct timeval startTime, stopTime;
     printf("测试开始\n");
     gettimeofday(&startTime, NULL);
+
     for(int i = 0; i < testTimes; i++){
 
         int n = (int)((rand() / (RAND_MAX + 1.0)) * N);
+        //int n = N;
         int *arr = randomArray(n, V);
         int *arr1 = copyArray(arr, n);
         int *arr2 = copyArray(arr, n);
@@ -34,8 +39,8 @@ int main(){
         
         selectSort(arr1, n);
         bubbleSort(arr2, n);
-        insertSort(arr3, n);
-        mergeSort(arr4, n);
+        //insertSort(arr3, n);
+        //mergeSort(arr4, n);
         // printArray(arr, n);
         // printArray(arr1, n);
         // printArray(arr2, n);
@@ -43,20 +48,16 @@ int main(){
         // printArray(arr4, n);
 
         // 测试
-        if(sameArray(arr1, arr2, n) == 0 || sameArray(arr1, arr2, n) == 0 || \
-        sameArray(arr1, arr3, n) == 0 || sameArray(arr1, arr4, n) == 0){
+        // if(sameArray(arr1, arr2, n) == 0 || sameArray(arr1, arr2, n) == 0 || \
+        // sameArray(arr1, arr3, n) == 0 || sameArray(arr1, arr4, n) == 0){
+        //     printf("出现错误！\n");
+        //     break;
+        // }
+        if(!sameArray(arr1, arr2, n)){
             printf("出现错误！\n");
+            break;
         }
-        free(arr);
-        free(arr1);
-        free(arr2);
-        free(arr3);
-        free(arr4);
-        arr = NULL;
-        arr1 = NULL;
-        arr2 = NULL;
-        arr3 = NULL;
-        arr4 = NULL;
+        
     }
     gettimeofday(&stopTime, NULL);
     double timeUse = (stopTime.tv_sec - startTime.tv_sec) + (stopTime.tv_usec - startTime.tv_usec) / 1000000.0;
@@ -158,7 +159,10 @@ void insertSort(int *arr, int length){
 }
 
 void mergeSort(int *arr, int length){
-    return process(arr, 0, length - 1);
+    if(arr == NULL || length < 2){
+        return;
+    }
+    process(arr, 0, length - 1);
 }
 
 void process(int *arr, int L, int R){
@@ -195,4 +199,28 @@ void merge(int *arr, int L, int M, int R){
     
     free(help);
     help = NULL;
+}
+
+// 与c语言内部的排序做比较
+void validator(void (*func1)(int *, int), void (*func2)(int *, int), int N, int V, int testTimes, int fixLength){
+    
+    int n = fixLength? N : (int)((rand() / (RAND_MAX + 1.0)) * N);
+    int *arr = randomArray(n, V);
+    int *arr1 = copyArray(arr, n);
+    int *arr2 = copyArray(arr, n);
+    func1(arr1, n);
+    func2(arr2, n);
+    printf("测试开始...\n");
+    struct timeval startTime, stopTime;
+    gettimeofday(&startTime, NULL);
+    for(int i = 0; i < testTimes; i++){
+        if(!sameArray(arr1, arr2, n)){
+            printf("出现错误！");
+            break;
+        }
+    }
+    gettimeofday(&stopTime, NULL);
+    double timeUse = (stopTime.tv_sec - startTime.tv_sec) + (stopTime.tv_usec - startTime.tv_usec) / 1000000.0;
+    printf("测试完成\n");
+    printf("timeUse = %lf\n", timeUse);
 }

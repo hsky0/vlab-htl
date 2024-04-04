@@ -1,6 +1,8 @@
 package class02;
 import java.util.Arrays;
 import class02.MergeSort;
+import class02.QuickSort;
+
 
 public class Validator {
     
@@ -24,13 +26,11 @@ public class Validator {
             int[] arr1 = copyArray(arr);
             int[] arr2 = copyArray(arr);
             int[] arr3 = copyArray(arr);
-            int[] arr4 = copyArray(arr);
             int[] cmparr = copyArray(arr);;
             // 进行排序
             selectionSort(arr1);
-            bubbleSort(arr2);
-            insertionSort(arr3);
-            MergeSort.mergeSort(arr4);
+            bubbleSort(arr3);
+            QuickSort.quickSort(arr2);
             Arrays.sort(cmparr);
             // printArray(arr);
             // printArray(arr1);
@@ -42,10 +42,11 @@ public class Validator {
             //     // 算法出现错误
             //     System.out.println("出现错误！请检查你的算法！");
             // }
-            if(!sameArray(arr4, cmparr)){
+            if(!sameArray(cmparr, arr2)){
 
-                // 算法出现错误
+                
                 System.out.println("出现错误！请检查你的算法！");
+                break;
             }
             
         }

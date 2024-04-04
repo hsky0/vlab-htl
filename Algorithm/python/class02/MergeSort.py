@@ -1,5 +1,7 @@
 def mergeSort(arr):
-    return process(arr, 0, len(arr) - 1)
+    if arr == None or len(arr) < 2:
+        return
+    process(arr, 0, len(arr) - 1)
 
 
 def process(arr, L, R):

@@ -5,7 +5,7 @@ github：https://github.com/algorithmzuo
 
 ## Linux环境配置java开发环境
 
-### 安装
+### 安装java
 - sudo apt install openjdk-11-jdk(安装OpenJDK 11软件包)
 - java --version(检查是否安装成功)
 - sudo update-alternatives --config java(修改默认版本)
@@ -28,6 +28,70 @@ github：https://github.com/algorithmzuo
 - 在bash中输入命令：javac demo1.java，该命令将会产生一个.class文件
 - 运行代码：java demo1
 
+### Makefile文件编写
+- 来源：https://www.bilibili.com/video/BV188411L7d2/?spm_id_from=333.337.search-card.all.click&vd_source=d6bcbd2fac9e9b84fc22095c62ddbe80
+- 该视频简要讲述了makefile文件的编写
+
+- 文件注释使用#号
+
+#### 编写步骤
+- 描述：加入现在有main.c, printhello.c factorial.c 三个文件
+- 版本一:
+  ```makefile
+  hello: main.c printhello.c factorial.c
+    gcc -o hello main.c printhello.c factorial.c
+  ```
+- 版本二：
+  ```makefile
+  CXX     = gcc
+  TARGET  = hello
+  OBJ     = main.o printhello.o factorial.o
+  $(TARGET): $(OBJ)
+    $(CXX) -o $(TARGET) $(OBJ)
+  
+  main.o: main.c
+    $(CXX) -c main.c
+  printhello.o: printhello.c
+    $(CXX) -c printhello.c
+  factorial.o: factorial.c
+  $(CXX) -c factorial.c
+
+  ```
+
+- 版本三：
+  ```makefile
+  CXX     = gcc
+  TARGET  = hello
+  OBJ     = main.o printhello.o factorial.o
+  CXXFLAGS = -c -Wall
+  $(TARGET): $(OBJ)
+    $(CXX) -o $@ $^
+  
+  %.o: %.c
+    $(CXX) $(CXXFLAGS) $< -o $@
+
+  .PHONY: clean
+  clean:  
+    rm -f *.o $(TARGET)
+  ```
+
+  - 版本四：
+  ```makefile
+  CXX     = gcc
+  TARGET  = hello
+  SRC     = $(wildcard *.c)
+  OBJ     = $(patsubst %.c, %.o, $(SRC))
+  CXXFLAGS = -c -Wall
+  $(TARGET): $(OBJ)
+    $(CXX) -o $@ $^
+  
+  %.o: %.c
+    $(CXX) $(CXXFLAGS) $< -o $@
+
+  .PHONY: clean
+  clean:  
+    rm -f *.o $(TARGET)
+  ```
 
 ## 数据结构与算法
 ### 选择排序
@@ -95,7 +159,10 @@ github：https://github.com/algorithmzuo
 
 ### 归并排序（重要）
 - 描述：先让左侧部分排好序，再让右侧部分排好序，最后再合并怕排序
-
+  
+#### 归并排序的扩展
+- 1.小和问题：在一个数组中，每一个数的左边比当前数小的数累加起来，叫做这个数组的小和
+- 2.逆序对问题：在一个数组中，左边的数如果比右边的数大，则这两个数构成一个逆序对，请打印该数组中所有的逆序对
 
 ### 快排
 - 问题一：
@@ -103,5 +170,17 @@ github：https://github.com/algorithmzuo
 
 - 问题二：
   给定一个数组arr，和一个数num，请把小于num的数放在数组的左边，等于num的数放在数组的中间，大于num的数放在数组的右边。要求额外空间复杂度O(1)，时间复杂度为O(N)
-
+ 
+#### 快排1.0
+- 描述：划分值为数组的最后一个数，对数组进行**问题一**处理，然后递归
   
+#### 快排2.0
+- 描述：划分值为数组的最后一个数，对数组进行**问题二**处理，然后递归
+
+#### 快排3.0
+- 描述：**随机**选择一个数组元素作为划分值，对数组进行**问题二**处理，然后递归
+
+
+
+
+### 堆

@@ -3,6 +3,41 @@
   "configurations": [
     {
       "type": "java",
+      "name": "QuickSort",
+      "request": "launch",
+      "mainClass": "class02.QuickSort",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "TheNetherlandsIssue",
+      "request": "launch",
+      "mainClass": "class02.TheNetherlandsIssue",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "ReverseOrderPair",
+      "request": "launch",
+      "mainClass": "class02.ReverseOrderPair",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "SmallSum",
+      "request": "launch",
+      "mainClass": "class02.SmallSum",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "timeTest",
+      "request": "launch",
+      "mainClass": "class02.timeTest",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
       "name": "MergeSort",
       "request": "launch",
       "mainClass": "class02.MergeSort",

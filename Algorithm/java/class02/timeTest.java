@@ -1,7 +1,6 @@
 package class02;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 public class timeTest {
     

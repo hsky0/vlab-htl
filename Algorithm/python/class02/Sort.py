@@ -11,12 +11,12 @@ from MergeSort import mergeSort
 def validator():
     N = 100                 #数组最大长度
     V = 1000                #数组元素的最大值
-    testTimes = 100     #测试次数
+    testTimes = 10000     #测试次数
     print("测试开始...")
     startTime = time()      
     for i in range(testTimes):
-        n = (int)(random.random() * N)
-
+        #n = (int)(random.random() * N)
+        n = N
         arr = randomArray(n, V)     #参数随机数组
         arr1 = copyArray(arr)
         arr2 = copyArray(arr)
