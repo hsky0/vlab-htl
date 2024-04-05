@@ -222,5 +222,6 @@ void validator(void (*func1)(int *, int), void (*func2)(int *, int), int N, int 
     gettimeofday(&stopTime, NULL);
     double timeUse = (stopTime.tv_sec - startTime.tv_sec) + (stopTime.tv_usec - startTime.tv_usec) / 1000000.0;
     printf("测试完成\n");
-    printf("timeUse = %lf\n", timeUse);
+    printf("timeUse = %lfs\n", timeUse);
 }
+

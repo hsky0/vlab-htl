@@ -62,5 +62,13 @@
     "stdlib.h": "c",
     "ReverseOrderPair.C": "cpp",
     "globalfuncs.h": "c"
-  }
+  },
+
+"pasteImage.path": "${currentFileDir}/imgs",
+"pasteImage.basePath": "${currentFileDir}",
+"pasteImage.forceUnixStyleSeparator": true,
+"pasteImage.prefix": "/",
+"pasteImage.insertPattern": "${imageSyntaxPrefix}./imgs/${imageFileName}${imageSyntaxSuffix}",
+
+
 }

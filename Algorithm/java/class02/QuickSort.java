@@ -1,5 +1,4 @@
 package class02;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import include.globalFunc;

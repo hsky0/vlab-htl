@@ -1,10 +1,10 @@
 package class02;
 import java.util.Arrays;
-import class02.MergeSort;
-import class02.QuickSort;
+
 
 
 public class Validator {
+    
     
 
     public static void main(String [] args){
@@ -13,47 +13,47 @@ public class Validator {
         int V = 1000;   //随机产生的数：0~V
 
         // 测试次数
-        int testTimes = 100000;
+        int testTimes = 10000;
+        validator(Validator::selectionSort, QuickSort::quickSort, N, V, testTimes, true);
+        validator(Validator::bubbleSort, QuickSort::quickSort, N, V, testTimes, true);
+        validator(Validator::insertionSort, QuickSort::quickSort, N, V, testTimes, true);
+        validator(MergeSort::mergeSort, QuickSort::quickSort, N, V, testTimes, true);
+        validator(Arrays::sort, QuickSort::quickSort, N, V, testTimes, true);
+        
+
+    }
+
+    public interface SortFunction {
+    
+        void performAction(int[] arr);
+    }
+    
+    // 对数器
+    public static void validator(SortFunction func1, SortFunction func2, int N, int V, int testTimes, boolean fixLength){
+        
         System.out.println("测试开始...");
         long startTime = System.currentTimeMillis();
         for(int i = 0; i < testTimes; i++){
-
-            // 随机得到一个长度，值在0~N之间
-            int n = (int)(Math.random() * N);        //random()等概率产生[0,1)之间的小数
-
-            // 得到随机数组
+            int n = fixLength ? N : (int)(Math.random() * N);
             int[] arr = randomArray(n, V);
             int[] arr1 = copyArray(arr);
             int[] arr2 = copyArray(arr);
-            int[] arr3 = copyArray(arr);
-            int[] cmparr = copyArray(arr);;
-            // 进行排序
-            selectionSort(arr1);
-            bubbleSort(arr3);
-            QuickSort.quickSort(arr2);
-            Arrays.sort(cmparr);
-            // printArray(arr);
-            // printArray(arr1);
-            // printArray(arr2);
-            // printArray(arr3);
-            // 测试
-            // if(!sameArray(arr1, arr2) || !sameArray(arr1, arr3) || !sameArray(arr1, arr4)){
+            
+            //排序
+            func1.performAction(arr1);
+            func2.performAction(arr2);
 
-            //     // 算法出现错误
-            //     System.out.println("出现错误！请检查你的算法！");
-            // }
-            if(!sameArray(cmparr, arr2)){
-
-                
-                System.out.println("出现错误！请检查你的算法！");
+            //测试
+            if(!sameArray(arr1, arr2)){
+                System.out.println("出现错误！");
                 break;
             }
             
         }
         long stopTime = System.currentTimeMillis();
-        System.out.println("timeUse = " + (stopTime - startTime) / 1000.0 + "s");
         System.out.println("测试结束");
-
+        System.out.println("timeUse = " + (stopTime - startTime) / 1000.0 + "s");
+        
     }
 
     // 产生随机数组，数组长度为n， 数组元素值：0~V之间

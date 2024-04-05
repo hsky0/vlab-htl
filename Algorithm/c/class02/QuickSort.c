@@ -44,16 +44,17 @@ int *partition(int *arr, int L, int R){
 }
 
 
-int main(){
+// int main(){
+                
+//     int N = 100;
+//     int V = 1000;
+//     int testTimes = 1000000;
+//     validator(selectSort, quickSort, N, V, testTimes, 1);
+//     validator(bubbleSort, quickSort, N, V, testTimes, 1);
+//     validator(insertSort, quickSort, N, V, testTimes, 1);
+//     validator(mergeSort,  quickSort, N, V, testTimes, 1);
+    
 
-    int N = 100;
-    int V = 1000;
-    int testTimes = 10000;
-    validator(selectSort, quickSort, N, V, testTimes, 1);
-    validator(bubbleSort, quickSort, N, V, testTimes, 1);
-    validator(insertSort, quickSort, N, V, testTimes, 1);
-    validator(mergeSort, quickSort, N, V, testTimes, 1);
-
-    return 0;
-}
+//     return 0;
+// }
 

@@ -8,8 +8,8 @@ public class SmallSum {
     public static void main(String[] args) {
         int n = 5;
         int V = 10;
-        //int[] arr = globalFunc.randomArray(n, V);
-        int[] arr = {1, 2, 4, 5, 10};
+        int[] arr = globalFunc.randomArray(n, V);
+        //int[] arr = {1, 2, 4, 5, 10};
         globalFunc.printArray(arr);
         int res = smallSum(arr);
         globalFunc.printArray(arr);

@@ -17,6 +17,9 @@ TheNetherlandsIssue: $(SRC) TheNetherlandsIssue.c
 QuickSort: $(SRC) QuickSort.c 
 	$(CXX) -o a.out $^	&& ./a.out
 
+HeapSort: $(SRC) HeapSort.c 
+	$(CXX) -o a.out $^	&& ./a.out
+
 clean:
 	rm -r *.out 
 

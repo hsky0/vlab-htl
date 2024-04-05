@@ -15,6 +15,7 @@ void bubbleSort(int *arr, int length);
 void insertSort(int *arr, int length);
 void mergeSort(int *arr, int length);
 void quickSort(int *arr, int length);
+void heapSort(int *arr, int length);
 void validator(void (*func1)(int *, int), void (*func2)(int *, int), int N, int V, int testTimes, int fixLength);
 
 

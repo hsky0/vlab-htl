@@ -3,6 +3,41 @@
   "configurations": [
     {
       "type": "java",
+      "name": "RadixSort",
+      "request": "launch",
+      "mainClass": "class03.RadixSort",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "ComparatorStudy",
+      "request": "launch",
+      "mainClass": "class03.ComparatorStudy",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "Comparator",
+      "request": "launch",
+      "mainClass": "class03.Comparator",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "SortArrayDistanceLessK",
+      "request": "launch",
+      "mainClass": "class02.SortArrayDistanceLessK",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "HeapSort",
+      "request": "launch",
+      "mainClass": "class02.HeapSort",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
       "name": "QuickSort",
       "request": "launch",
       "mainClass": "class02.QuickSort",
