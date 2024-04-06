@@ -13,12 +13,13 @@ public class Validator {
         int V = 1000;   //随机产生的数：0~V
 
         // 测试次数
-        int testTimes = 10000;
-        validator(Validator::selectionSort, QuickSort::quickSort, N, V, testTimes, true);
-        validator(Validator::bubbleSort, QuickSort::quickSort, N, V, testTimes, true);
-        validator(Validator::insertionSort, QuickSort::quickSort, N, V, testTimes, true);
-        validator(MergeSort::mergeSort, QuickSort::quickSort, N, V, testTimes, true);
-        validator(Arrays::sort, QuickSort::quickSort, N, V, testTimes, true);
+        int testTimes = 100000;
+        validator(Validator::selectionSort, Validator::bubbleSort, N, V, testTimes, true);
+        // validator(Validator::selectionSort, QuickSort::quickSort, N, V, testTimes, true);
+        // validator(Validator::bubbleSort, QuickSort::quickSort, N, V, testTimes, true);
+        // validator(Validator::insertionSort, QuickSort::quickSort, N, V, testTimes, true);
+        // validator(MergeSort::mergeSort, QuickSort::quickSort, N, V, testTimes, true);
+        // validator(Arrays::sort, QuickSort::quickSort, N, V, testTimes, true);
         
 
     }

@@ -46,6 +46,9 @@ void radixSort_process(int *arr, int L, int R, int digit){
     int *bucket = (int *)malloc((R - L + 1) * sizeof(arr[0]));
     for(int d = 1; d <= digit; d++){
         int *count = (int *)malloc(radix * sizeof(int));
+        for(i = 0; i < radix; i++){
+            count[i] = 0;
+        }
         for(i = L; i <= R; i++){        // 入桶，这里即用一个数组记录arr元素的第d位值出现的次数
             j = getDigit(arr[i], d);
             count[j]++;
@@ -61,7 +64,12 @@ void radixSort_process(int *arr, int L, int R, int digit){
         for(i = L, j = 0; i <= R; i++, j++){
             arr[i] = bucket[j];
         }
+
+        free(count);
+        count = NULL;
     }
+    free(bucket);
+    bucket = NULL;
 }
 
 
@@ -72,7 +80,7 @@ int main(){
     int N = 10;
     int V = 1000;
     int testTimes = 100000;
-    validator(selectSort, bubbleSort, N, V, testTimes, 1);
+    //validator(selectSort, bubbleSort, N, V, testTimes, 1);
     validator(selectSort, radixSort, N, V, testTimes, 1);
 
 }
