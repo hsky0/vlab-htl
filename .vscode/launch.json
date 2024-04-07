@@ -3,6 +3,34 @@
   "configurations": [
     {
       "type": "java",
+      "name": "SmallEqualBigger",
+      "request": "launch",
+      "mainClass": "class04.SmallEqualBigger",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "IsPalindromeNumber",
+      "request": "launch",
+      "mainClass": "class04.IsPalindromeNumber",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "PalindromeNumber",
+      "request": "launch",
+      "mainClass": "class04.PalindromeNumber",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "HashAndTree",
+      "request": "launch",
+      "mainClass": "class04.HashAndTree",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
       "name": "RadixSort",
       "request": "launch",
       "mainClass": "class03.RadixSort",
