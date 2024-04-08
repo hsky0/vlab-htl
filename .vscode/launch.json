@@ -3,6 +3,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "test",
+      "request": "launch",
+      "mainClass": "class04.test",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "CopyListWithRandom",
+      "request": "launch",
+      "mainClass": "class04.CopyListWithRandom",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
       "name": "SmallEqualBigger",
       "request": "launch",
       "mainClass": "class04.SmallEqualBigger",
