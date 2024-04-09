@@ -3,6 +3,27 @@
   "configurations": [
     {
       "type": "java",
+      "name": "PerInPosTraversal",
+      "request": "launch",
+      "mainClass": "class05.PerInPosTraversal",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "FindFirstInsertNode",
+      "request": "launch",
+      "mainClass": "class04.FindFirstInsertNode",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "FindFirstInsertNode",
+      "request": "launch",
+      "mainClass": "include.FindFirstInsertNode",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
       "name": "test",
       "request": "launch",
       "mainClass": "class04.test",

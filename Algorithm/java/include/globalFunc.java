@@ -106,6 +106,18 @@ public class globalFunc {
         System.out.println();
     }
 
+    public static void printLoopLinkList(Node head, int length){
+        if(head == null){
+            System.out.println("链表为空！");
+        }
+        Node p = head;
+        while (length-- != 0) {
+            System.out.print(p.value + " ");
+            p = p.next;
+        }
+        System.out.println();
+    }
+
     // 产生一个随机链表，链表长度为n，链表的结点的最大值为不超过V
     public static Node createRandomLinkList(int n, int V){
 
@@ -117,4 +129,28 @@ public class globalFunc {
         return head;
     }
 
+
+    // 创建一个随机的，具有环的链表，环的第一个结点位置为loopNodePos
+    public static Node createLoopLinkList(int length, int loopNodePos, int V){
+        if(length < 3){
+            System.out.println("带有环的链表起长度必须大于等于三");
+            return null;
+        }
+        if(loopNodePos > length || length - loopNodePos == 1){
+            System.out.println("环的第一个结点的位置必须小于等于链表的长度且相邻结点不能构成环");
+            return null;
+        }
+        Node head = createRandomLinkList(length, V);
+        Node pos = head;
+        Node end = head;
+        int  n = loopNodePos;
+        while (--n != 0) {
+            pos = pos.next;             // 找到环的起始位置
+        }
+        while (end.next != null) {
+            end = end.next;         // 找出链表的最后一个结点
+        }
+        end.next = (length == 3 || loopNodePos == length) ? head : pos;
+        return head;
+    }
 }
