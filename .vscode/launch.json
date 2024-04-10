@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "TreeMaxWidth",
+      "request": "launch",
+      "mainClass": "class05.TreeMaxWidth",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
       "name": "PerInPosTraversal",
       "request": "launch",
       "mainClass": "class05.PerInPosTraversal",

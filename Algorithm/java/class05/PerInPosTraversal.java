@@ -61,6 +61,27 @@ public class PerInPosTraversal {
         }
     }
     
+    public static void inOrderUnRecur(Node head){
+        System.out.print("in-order-unrecur: ");
+        if(head != null){
+            Stack<Node> stack = new Stack<Node>();
+            while (!stack.isEmpty() || head != null) {
+                if(head != null){
+                    stack.push(head);
+                    head = head.left;
+                }
+                else{
+                    head = stack.pop();
+                    System.out.print(head.value + " ");
+                    head = head.right;
+                }
+
+            }
+        }
+        System.out.println();
+    }
+
+
     public static void posOrderUnRecur(Node head){
         System.out.print("pos-order-unrecur: ");
         if(head != null){
@@ -104,6 +125,7 @@ public class PerInPosTraversal {
         posOrderRecur(head);
         System.out.println();
         preOrderUnRecur(head);
+        inOrderUnRecur(head);
         posOrderUnRecur(head);
     }
 }
