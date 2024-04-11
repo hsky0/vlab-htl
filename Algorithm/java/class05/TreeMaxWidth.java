@@ -29,7 +29,7 @@ public class TreeMaxWidth {
         while (!queue.isEmpty()) {
             Node cur = queue.poll();
             System.out.print(cur.value + " ");
-            if(cur.left != null){
+            if(cur.left != null){ 
                 queue.add(cur.left);
             }
             if(cur.right != null){
@@ -105,6 +105,70 @@ public class TreeMaxWidth {
         return Math.max(max, curLevelNodes);
     }
 
+    public static int getMaxWidth3(Node head){
+        if(head == null){
+            return 0;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(head);
+        HashMap<Node, Integer> levelMap = new HashMap<>();
+        levelMap.put(head, 1);
+        int curLevel = 1;
+        int curLevelNodes = 0;
+        int max = Integer.MIN_VALUE;
+        while (!queue.isEmpty()) {
+            Node cur = queue.poll();
+            int curNodeLevel = levelMap.get(cur);
+            if(curLevel == curNodeLevel){
+                curLevelNodes++;
+            } else {
+                max = Math.max(max, curLevelNodes);
+                curLevel++;
+                curLevelNodes = 1;
+            }
+            if(cur.left != null){
+                levelMap.put(cur.left, curNodeLevel + 1);
+                queue.add(cur.left);
+            }
+            if(cur.right != null){
+                levelMap.put(cur.right, curNodeLevel + 1);
+                queue.add(cur.right);
+            }
+        }
+
+        return Math.max(max, curLevelNodes);
+    }
+
+    public static int getMaxWidthUnHash(Node head){
+        if(head == null){
+            return 0;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        Node curLevelEnd = head;
+        Node nextLevelEnd = null;
+        int curLevelNodes = 0;
+        int max = Integer.MIN_VALUE;
+        queue.add(head);
+        while (!queue.isEmpty()) {
+            Node cur = queue.poll();
+            if(cur.left != null){
+                queue.add(cur.left);
+                nextLevelEnd = cur.left;
+            }
+            if(cur.right != null){
+                queue.add(cur.right);
+                nextLevelEnd = cur.right;
+            }
+            curLevelNodes++;
+            if(cur == curLevelEnd){
+                max = Math.max(max, curLevelNodes);
+                curLevelEnd = nextLevelEnd;
+                curLevelNodes = 0;
+            }
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
         Node head = new Node(1);
         head.left = new Node(2);
@@ -118,6 +182,8 @@ public class TreeMaxWidth {
         widthFirstTraversal(head);
         System.out.println(getMaxWidth(head));
         widthFirstTraversal(head);
-        System.out.println(getMaxWidth2(head));
+        System.out.println(getMaxWidth(head));
+        System.out.println(getMaxWidth3(head));
+        System.out.println(getMaxWidthUnHash(head));
     }
 }

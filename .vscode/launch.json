@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "TestBST",
+      "request": "launch",
+      "mainClass": "class05.TestBST",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
       "name": "TreeMaxWidth",
       "request": "launch",
       "mainClass": "class05.TreeMaxWidth",
