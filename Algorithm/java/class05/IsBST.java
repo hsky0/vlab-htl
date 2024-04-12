@@ -93,6 +93,99 @@ public class IsBST {
         System.out.println();
     }
 
+    public static class ReturnData{
+        public boolean isBST;
+        public int minValue;
+        public int maxValue;
+        public ReturnData(boolean isBst, int min, int max){
+            isBST = isBst;
+            maxValue = max;
+            minValue = min;
+        }
+    }
+
+    public static ReturnData process(Node x){
+        if(x == null){
+            return null;
+        }
+
+        ReturnData leftData = process(x.left);
+        ReturnData rightData = process(x.right);
+        
+        
+        int min = x.value;
+        int max = x.value;
+
+        if(leftData != null){
+            min = Math.min(min, leftData.minValue);
+            max = Math.max(max, leftData.maxValue);
+        }
+        if(rightData != null){
+            min = Math.min(min, leftData.minValue);
+            max = Math.max(max, rightData.maxValue);
+        }
+
+        // boolean isBST = true;
+        // if(leftData != null && (!leftData.isBST || leftData.maxValue >= x.value)){
+        //     isBST = false;
+        // }
+        // if(righData != null && (!righData.isBST || righData.minValue <= x.value)){
+        //     isBST = false;
+        // }
+
+        boolean isBST = false;
+        if(
+            ((leftData != null ? (leftData.isBST && leftData.maxValue < x.value) : true)
+            &&
+            (rightData != null ? (rightData.isBST && rightData.maxValue < x.value) : true)
+            )
+        ){
+            isBST = true;
+        }
+
+        return new ReturnData(isBST, min, max);
+    }
+
+
+    public static boolean isFBT(Node head){
+        if(head == null){
+            return true;
+        }
+        Info data = processFunc(head);
+        // int totalHeight = data.height;
+        // int totalNodes = data.nodes;
+        // if(totalNodes == Math.pow(2, totalHeight) - 1){
+        //     return true;
+        // } else {
+        //     return false;
+        // }
+        return data.nodes == (1 << data.height - 1);
+    }
+
+    public static class  Info {
+        public int height;
+        public int nodes;
+
+        public Info(int h, int n){
+            height = h;
+            nodes = n;
+        }
+         
+    }
+
+    public static Info processFunc(Node x){
+        if(x == null){
+            return new Info(0, 0);
+        }
+
+        Info leftData = processFunc(x.left);
+        Info rightData = processFunc(x.right);
+
+        int height = Math.max(leftData.height, rightData.height) + 1;
+        int nodes = leftData.nodes + rightData.nodes + 1;
+
+        return new Info(height, nodes);
+    }
     
     public static void main(String[] args) {
         
@@ -112,5 +205,7 @@ public class IsBST {
         } else {
             System.out.println("该树不是搜索二叉树");
         }
+
+        System.out.println(isFBT(head));
     }
 }

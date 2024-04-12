@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "IsBST",
+      "request": "launch",
+      "mainClass": "class05.IsBST",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
       "name": "TestBST",
       "request": "launch",
       "mainClass": "class05.TestBST",
