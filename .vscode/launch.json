@@ -3,6 +3,55 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Code03_TopologySort",
+      "request": "launch",
+      "mainClass": "class06.Code03_TopologySort",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "Code01_BFS",
+      "request": "launch",
+      "mainClass": "class06.Code01_BFS",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "Exercise",
+      "request": "launch",
+      "mainClass": "class06.Exercise",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "GraphGenerator",
+      "request": "launch",
+      "mainClass": "class06.GraphGenerator",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "PaperFolding",
+      "request": "launch",
+      "mainClass": "class05.PaperFolding",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "SerializeAndReconstructTree",
+      "request": "launch",
+      "mainClass": "class05.SerializeAndReconstructTree",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "LowestCommonAncestor",
+      "request": "launch",
+      "mainClass": "class05.LowestCommonAncestor",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
       "name": "IsBST",
       "request": "launch",
       "mainClass": "class05.IsBST",
