@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Code06_Dijkstra",
+      "request": "launch",
+      "mainClass": "class06.Code06_Dijkstra",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
       "name": "Code03_TopologySort",
       "request": "launch",
       "mainClass": "class06.Code03_TopologySort",
