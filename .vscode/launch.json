@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Code01_Hani",
+      "request": "launch",
+      "mainClass": "class08.Code01_Hani",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
       "name": "Code09_NQueens",
       "request": "launch",
       "mainClass": "class08.Code09_NQueens",
