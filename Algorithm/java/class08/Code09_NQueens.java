@@ -168,7 +168,7 @@ public class Code09_NQueens {
     }
 
     public static void main(String[] args) {
-        int n = 15;
+        int n = 8;
         long startTime, endTime;
 
         // startTime = System.currentTimeMillis();
@@ -183,17 +183,17 @@ public class Code09_NQueens {
         // System.out.println("num1 res = " + b);
         // System.out.println("cost time = " + (endTime - startTime) + "ms");
 
-        startTime = System.currentTimeMillis();
-        int c = num2(n); 
-        endTime = System.currentTimeMillis();
-        System.out.println("num1 res = " + c);
-        System.out.println("cost time = " + (endTime - startTime) + "ms");
+        // startTime = System.currentTimeMillis();
+        // int c = num2(n); 
+        // endTime = System.currentTimeMillis();
+        // System.out.println("num1 res = " + c);
+        // System.out.println("cost time = " + (endTime - startTime) + "ms");
 
-        startTime = System.currentTimeMillis();
-        int d = num2_1(n); 
-        endTime = System.currentTimeMillis();
-        System.out.println("num1 res = " + d);
-        System.out.println("cost time = " + (endTime - startTime) + "ms");
+        // startTime = System.currentTimeMillis();
+        // int d = num2_1(n); 
+        // endTime = System.currentTimeMillis();
+        // System.out.println("num1 res = " + d);
+        // System.out.println("cost time = " + (endTime - startTime) + "ms");
 
         startTime = System.currentTimeMillis();
         int e = num2_2(n); 

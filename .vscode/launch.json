@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Code02_PrintAllSubsquence",
+      "request": "launch",
+      "mainClass": "class08.Code02_PrintAllSubsquence",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
       "name": "Code01_Hani",
       "request": "launch",
       "mainClass": "class08.Code01_Hani",

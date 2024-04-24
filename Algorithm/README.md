@@ -490,6 +490,10 @@ public class Node{
 - 局部最优？->整体最优
 - 最常用的算法
 
+### 题目三
+- 打印一个字符串的全部子序列，包括空字符串
+-  
+
 
 #### 题目五
 - 贪心策略在实现时，经常使用到的技巧：
@@ -521,4 +525,11 @@ public class Node{
 - 经典解法：按行放
 - 位运算法：
   - 适用范围：不要超过32行
-  - 
+
+
+- 安装：pip install flask-socketio
+
+- 运行Flask-SocketIO要求：
+  1. eventlet：支持长轮询和WebSocket传输，最好的选择
+  2. gevent：不支持原生的WebScoket，需安装gevent-websocket
+  3. 也可以使用基于Werzeug的Flask开发服务器，但仅用于开发用途，不用于生产
