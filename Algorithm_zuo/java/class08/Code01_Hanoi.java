@@ -1,6 +1,6 @@
 package class08;
 
-public class Code01_Hani {
+public class Code01_Hanoi {
     
 
     public static void hani(int n){

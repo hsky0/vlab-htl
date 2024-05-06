@@ -3,6 +3,41 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Code07_Knapsack",
+      "request": "launch",
+      "mainClass": "class08.Code07_Knapsack",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "Code06_ConvertToLetterString",
+      "request": "launch",
+      "mainClass": "class08.Code06_ConvertToLetterString",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "Code04_ReverseStackUsingRecursive",
+      "request": "launch",
+      "mainClass": "class08.Code04_ReverseStackUsingRecursive",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "Code08_CardsInLine",
+      "request": "launch",
+      "mainClass": "class08.Code08_CardsInLine",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
+      "name": "Code03_PrintAllPermutations",
+      "request": "launch",
+      "mainClass": "class08.Code03_PrintAllPermutations",
+      "projectName": "htl_300628d9"
+    },
+    {
+      "type": "java",
       "name": "Code02_PrintAllSubsquence",
       "request": "launch",
       "mainClass": "class08.Code02_PrintAllSubsquence",
